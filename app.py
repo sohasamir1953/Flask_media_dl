@@ -1,3 +1,4 @@
+from os import environ
 from flask import Flask, request
 import media
 keys = ["1234", "test", "dhurgham", "aymen"]
@@ -41,4 +42,7 @@ def home():
         return ":)"
 
 
-my_app.run(debug=True, port=9000)
+if __name__ == '__main__':
+    # Bind to PORT if defined, otherwise default to 5000.
+    port = int(environ.get('PORT', 5000))
+    my_app.run(host='0.0.0.0', port=port)
